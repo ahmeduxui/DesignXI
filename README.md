@@ -47,11 +47,11 @@ Small projects can skip what they don't need. DesignXI asks about project size a
 
 | File | Contents | Example |
 | --- | --- | --- |
+| `index.html` | Start here: one page that links every file | [Open example](https://htmlpreview.github.io/?https://github.com/ahmeduxui/DesignXI/blob/main/examples/nabd-clinic-dashboard/index.html) |
 | `process.html` | The living project log: research, requirements, wireframes, decisions, tests | [Open example](https://htmlpreview.github.io/?https://github.com/ahmeduxui/DesignXI/blob/main/examples/nabd-clinic-dashboard/process.html) |
 | `screens.html` | The interactive prototype: every screen, every state, both languages | [Open example](https://htmlpreview.github.io/?https://github.com/ahmeduxui/DesignXI/blob/main/examples/nabd-clinic-dashboard/screens.html) |
 | `casestudy.html` | A portfolio-ready case study | [Open example](https://htmlpreview.github.io/?https://github.com/ahmeduxui/DesignXI/blob/main/examples/nabd-clinic-dashboard/casestudy.html) |
 | `handoff.html` | Specs, tokens and RTL notes for developers | [Open example](https://htmlpreview.github.io/?https://github.com/ahmeduxui/DesignXI/blob/main/examples/nabd-clinic-dashboard/handoff.html) |
-| `index.html` | One page that links everything | [Open example](https://htmlpreview.github.io/?https://github.com/ahmeduxui/DesignXI/blob/main/examples/nabd-clinic-dashboard/index.html) |
 | `images/` | Generated images, each with its copy-ready prompt | [Open example](examples/nabd-clinic-dashboard/image-prompts.md) |
 
 The examples come from **Nabd**, a demo project described below.
