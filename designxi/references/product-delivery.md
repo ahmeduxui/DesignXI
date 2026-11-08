@@ -408,7 +408,7 @@ Desktop      | xl         | 1024–1279px| 12 col  | Full desktop layout
 Desktop Wide | 2xl        | 1280px+    | 12 col  | Max-width: 1440px, centered
 
 Responsiveness Rules:
-  ✦ All interactive elements: minimum 44×44px touch target (WCAG 2.5.5)
+  ✦ All interactive elements: minimum 44×44px touch target (WCAG 2.5.5 AAA; the 2.2 AA floor is 24×24 per 2.5.8)
   ✦ Text must not overflow containers at any breakpoint
   ✦ Images must use responsive sizing (max-width: 100%)
   ✦ Tables must scroll horizontally on mobile (overflow-x: auto)
@@ -467,7 +467,7 @@ Performance       | App load time (p95)             | —               | < 2s  
 Performance       | Crash-free session rate         | —               | > 99.5%    | Firebase Crashlytics
 Satisfaction      | App Store rating                | —               | > 4.5 ★    | App Store / Play Store
 Support           | Avg. support ticket resolution  | —               | < 24h      | CRM
-Accessibility     | WCAG 2.1 AA compliance          | —               | 100%       | Automated + manual audit
+Accessibility     | WCAG 2.2 AA compliance          | —               | 100%       | Automated + manual audit
 ```
 
 ---
@@ -521,7 +521,7 @@ UAT-02  | SCR-01  | FR-AUTH-02  | Registration with invalid email format | Enter
 UAT-03  | SCR-02  | FR-AUTH-05  | 5 failed logins trigger lockout        | Fail login 5 times             | Account locked, message shown      | [ ]
 UAT-04  | SCR-03  | FR-SEARCH-01| Arabic search returns results < 1.5s   | Type Arabic query              | Results appear within 1.5 seconds  | [ ]
 UAT-05  | SCR-05  | FR-ERR-06   | Search with no results shows guidance  | Type nonsense query            | "No results" + suggestions shown   | [ ]
-UAT-06  | All     | WCAG 2.1    | Screen reader reads all elements       | Use VoiceOver/TalkBack         | All elements announced correctly   | [ ]
+UAT-06  | All     | WCAG 2.2    | Screen reader reads all elements       | Use VoiceOver/TalkBack         | All elements announced correctly   | [ ]
 UAT-07  | All     | BR-06       | Admin cannot login without 2FA         | Login as admin without 2FA    | 2FA prompt shown, cannot bypass    | [ ]
 ```
 
@@ -535,7 +535,7 @@ PASS conditions (must all be true before sign-off):
   ✦ No crashes on primary user flows
   ✦ RTL (Arabic) layout correct on all screens
   ✦ Performance: load time < 2s on 4G connection (Lighthouse ≥ 90)
-  ✦ Accessibility: WCAG 2.1 AA — no critical violations
+  ✦ Accessibility: WCAG 2.2 AA — no critical violations
   ✦ Stakeholder sign-off obtained
 
 FAIL conditions (block launch):

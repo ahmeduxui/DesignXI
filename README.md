@@ -36,7 +36,7 @@ You describe a product. DesignXI walks you through **27 ordered phases**, from u
 | **2 · Requirements** | 5–6 | BRD and FRD (13 sections), approved before any wireframe |
 | **3 · Structure** | 7–9 | Information architecture, user flows, lo-fi and mid-fi wireframes with empty / loading / error states |
 | **4 · Visual direction** | 10–13 | Moodboard, design school, colors, fonts, icons, design tokens, product voice in Arabic and English |
-| **5 · UI** | 14–17 | Component library, every screen in hi-fi, AI-generated imagery (with prompts), responsive + RTL, WCAG self-critique |
+| **5 · UI** | 14–17 | Component library, every screen in hi-fi, on-brand imagery (Gemini with prompts, free stock, or your own photos), responsive + RTL, WCAG 2.2 self-critique |
 | **6 · Validation** | 18–20 | Clickable prototype, usability test plan and findings, web compliance audit |
 | **7 · Post-design docs** | 21–23 | Screen ↔ requirement traceability, acceptance tests (UAT), security review |
 | **8 · Delivery & launch** | 24–27 | Case study, device mockups, developer handoff, staging checklist, launch plan |
@@ -52,7 +52,7 @@ Small projects can skip what they don't need. DesignXI asks about project size a
 | `screens.html` | The interactive prototype: every screen, every state, both languages | [Open example](https://htmlpreview.github.io/?https://github.com/ahmeduxui/DesignXI/blob/main/examples/nabd-clinic-dashboard/screens.html) |
 | `casestudy.html` | A portfolio-ready case study | [Open example](https://htmlpreview.github.io/?https://github.com/ahmeduxui/DesignXI/blob/main/examples/nabd-clinic-dashboard/casestudy.html) |
 | `handoff.html` | Specs, tokens and RTL notes for developers | [Open example](https://htmlpreview.github.io/?https://github.com/ahmeduxui/DesignXI/blob/main/examples/nabd-clinic-dashboard/handoff.html) |
-| `images/` | Generated images, each with its copy-ready prompt | [Open example](examples/nabd-clinic-dashboard/image-prompts.md) |
+| `images/` | Project images, each with its copy-ready prompt or stock credit | [Open example](examples/nabd-clinic-dashboard/image-prompts.md) |
 
 The examples come from **Nabd**, a demo project described below.
 
@@ -110,7 +110,13 @@ cp -r DesignXI/designxi ~/.claude/skills/
 
 ## How to use
 
-Just describe what you want to build. The skill starts on its own when you ask for a product, an app, a dashboard or a website. You can also call it by name with `/designxi`.
+Call it by name with `/designxi`, or say "use DesignXI" and describe what you want to build.
+
+DesignXI only starts when you ask for it by name or ask for a complete end-to-end design process. It stays out of the way for small UI edits and for projects that already follow their own design system.
+
+**Claude Code users** who want it to start *only* from the slash command can add `disable-model-invocation: true` to the frontmatter of their local copy of `SKILL.md`. It isn't set by default because the Claude app's skill upload doesn't accept that field yet.
+
+DesignXI asks its setup questions in your language, Arabic or English.
 
 Example prompts:
 
@@ -168,10 +174,18 @@ designxi/
     ├── design-systems/          Ready systems: Untitled UI, Apple, Salla
     ├── apple-hig/               Apple Human Interface Guidelines, grouped for review
     ├── rtl-arabic.md            RTL and Arabic typography rules
-    ├── accessibility-wcag.md    WCAG checks
+    ├── accessibility-wcag.md    WCAG 2.2 AA checks
     └── scripts/                 Image helpers for mockups and embedding
 ```
 
+
+## Images and licensing
+
+DesignXI never strips an AI provider's watermark with code. Each project's images come from one of three sources, and you choose which:
+
+- **Gemini.** Before generating, turn off the visible mark at the source: Gemini → Settings → *Media watermark* → Off (available since August 2026, not in every country). The invisible SynthID watermark stays in the file. If the setting isn't available to you, keep the mark or use one of the other sources.
+- **Free stock photos** from [Pexels](https://www.pexels.com/license/) or [Unsplash](https://unsplash.com/license). DesignXI picks them by subject and palette, downloads them, and records each photo's credit in `images.json` and the handoff. Check each site's license before commercial use.
+- **Your own photos.**
 
 ---
 

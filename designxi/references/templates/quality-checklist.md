@@ -47,10 +47,13 @@ Run through before handing off any project:
 
 ### Accessibility & WCAG
 ```
-□ All screens pass WCAG AA (4.5:1 contrast, 48px touch targets, focus states)
+□ All screens pass WCAG 2.2 AA (4.5:1 contrast, 48px touch targets, focus states)
 □ Non-text contrast ≥ 3:1 (WCAG 1.4.11): icons, borders, focus rings
 □ Focus indicator visible on every focusable element (WCAG 2.4.7)
 □ 200% zoom test passed — no content clipped, no forced horizontal scroll (WCAG 1.4.4)
+□ Focused element never fully hidden by sticky bars (WCAG 2.4.11)
+□ Drag actions have a single-tap alternative (WCAG 2.5.7)
+□ Help in a consistent place · no redundant entry · login allows paste (WCAG 3.2.6, 3.3.7, 3.3.8)
 □ Keyboard-only navigation tested — no focus traps, all actions reachable
 □ Screen reader tested — all images have alt text, forms have visible labels
 □ prefers-reduced-motion CSS rule is included

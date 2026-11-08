@@ -57,7 +57,7 @@ Read this file only when the user asks for the rationale behind a design decisio
 13. **Microinteractions make the product feel alive** *(Microinteractions — Dan Saffer)*
     The difference between polished and dead is in the details — button press, loading states, transitions.
 
-14. **Accessibility is not optional** *(WCAG 2.1 AA)*
+14. **Accessibility is not optional** *(WCAG 2.2 AA)*
     A design that excludes 15–20% of users is a failed design.
 
 15. **Information Architecture determines success** *(Information Architecture — Morville & Rosenfeld)*

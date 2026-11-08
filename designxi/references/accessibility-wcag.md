@@ -1,19 +1,21 @@
-# WCAG 2.1 AA Accessibility Rules for UX/UI Design
+# WCAG 2.2 AA Accessibility Rules for UX/UI Design
 
 A practical guide for implementing Web Content Accessibility Guidelines Level AA in HTML/CSS design work. This reference ensures your designs are usable by all people, including those with disabilities.
 
 ---
 
-## Why WCAG 2.1 AA Matters
+## Why WCAG 2.2 AA Matters
 
 ### Legal Requirements
 
-WCAG 2.1 AA is the web accessibility standard recognized by most jurisdictions:
-- **United States**: Section 508 of the Rehabilitation Act and the ADA increasingly require WCAG 2.1 AA compliance
-- **European Union**: The European Accessibility Act mandates WCAG 2.1 AA for web content
-- **United Kingdom**: Public sector websites must meet WCAG 2.1 AA
-- **Canada**: AODA (Accessibility for Ontarians with Disabilities Act) requires WCAG 2.1 AA compliance
+WCAG 2.2 (a W3C Recommendation since October 2023) is the current version. It is a superset of 2.1: every 2.1 AA criterion is still there (except 4.1.1 Parsing, which 2.2 removed as obsolete), plus nine new criteria, six of them at A/AA. Designing to 2.2 AA therefore also satisfies any law that still references 2.1 AA:
+- **United States**: Section 508 and ADA settlements typically reference WCAG 2.1 AA
+- **European Union**: The European Accessibility Act points to EN 301 549, which currently maps to WCAG 2.1 AA
+- **United Kingdom**: Public sector websites are audited against WCAG 2.2 AA
+- **Canada**: AODA requires WCAG 2.0 AA as a legal minimum
 - **Australia**: Disability Discrimination Act requires accessible web content
+
+DesignXI targets **WCAG 2.2 AA** on every project so the output stays compliant as regulations move to 2.2.
 
 Non-compliance exposes your organization to legal liability, lawsuits, and regulatory fines.
 
@@ -108,7 +110,7 @@ Your content must be robust enough to be interpreted reliably by assistive techn
 
 Color contrast is one of the most important and most frequently failed accessibility requirement. Low contrast text is hard to read for everyone, especially people with low vision, color blindness, or eye strain.
 
-### Contrast Ratio Minimums (WCAG 2.1 AA)
+### Contrast Ratio Minimums (WCAG 2.2 AA)
 
 | Element | Minimum Ratio | Calculation |
 |---------|--------------|-------------|
@@ -336,7 +338,8 @@ People with motor disabilities, arthritis, or using touchscreens need large touc
 |----------|------|-------|
 | **Apple HIG** | 44×44px | Industry standard for iOS |
 | **Material Design** | 48×48dp | Android standard |
-| **WCAG 2.1 AA Minimum** | 44×44px | Formal requirement |
+| **WCAG 2.2 AA — 2.5.8 Target Size (Minimum)** | 24×24 CSS px | Legal floor (or enough spacing that a 24px circle around each target doesn't overlap another) |
+| **WCAG 2.5.5 Target Size (Enhanced)** | 44×44 CSS px | AAA — DesignXI's default, together with the 44/48 platform sizes above |
 
 ### Spacing Between Targets
 
@@ -1195,7 +1198,26 @@ Automated tools catch about 30% of accessibility issues. Always do manual testin
 
 ---
 
-## WCAG 2.1 AA Quick Reference Table
+## New in WCAG 2.2 — check these on every project
+
+These six A/AA criteria were added in WCAG 2.2. They are the ones most often missed by checklists written for 2.1.
+
+| Criterion | Level | What it means for the design | Common failure |
+|---|---|---|---|
+| **2.4.11 Focus Not Obscured (Minimum)** | AA | A focused element is never fully hidden by sticky headers, footers, cookie bars or chat widgets | Tabbing into a field that sits under a sticky footer |
+| **2.5.7 Dragging Movements** | AA | Anything done by dragging also works with a single tap/click (buttons, menu, "move to") | Kanban card or slider that only moves by drag |
+| **2.5.8 Target Size (Minimum)** | AA | Targets at least 24×24 CSS px, or spaced so a 24px circle around each doesn't touch another | Tiny icon buttons packed together in a table row |
+| **3.2.6 Consistent Help** | A | Help (contact, chat, FAQ link) sits in the same relative place on every page | Support link in the header on one page, footer on another |
+| **3.3.7 Redundant Entry** | A | Don't ask for the same information twice in one flow — auto-fill it or let the user pick it | Re-typing the shipping address as billing address |
+| **3.3.8 Accessible Authentication (Minimum)** | AA | Login never depends on a memory or puzzle test alone; allow paste, password managers, passkeys or email links | Blocking paste in the password field, image CAPTCHA only |
+
+Also new at AAA (apply when the project aims higher): 2.4.12 Focus Not Obscured (Enhanced), 2.4.13 Focus Appearance, 3.3.9 Accessible Authentication (Enhanced).
+
+**In the critique (Phase 17)**, report each of the six above as pass / fail / not applicable per screen.
+
+---
+
+## WCAG 2.2 AA Quick Reference Table
 
 | Success Criterion | Level | Requirement | Common Failures |
 |------------------|-------|-------------|-----------------|
@@ -1218,7 +1240,13 @@ Automated tools catch about 30% of accessibility issues. Always do manual testin
 | **1.3.5 Identify Input Purpose** | AA | Autocomplete attributes for inputs | No autocomplete on email field |
 | **2.2.2 Pause, Stop, Hide** | A | User can stop moving/scrolling content | Auto-playing carousel no pause |
 | **2.3.3 Animation from Interactions** | AAA | Option to disable animation from interactions | Can't disable animation |
-| **2.5.5 Target Size (Enhanced)** | AAA | 44px target size (44×44 minimum) | 32px button |
+| **2.5.5 Target Size (Enhanced)** | AAA | 44×44 CSS px (DesignXI default) | 32px button |
+| **2.5.8 Target Size (Minimum)** | AA | 24×24 CSS px or enough spacing | 16px icon buttons side by side |
+| **2.4.11 Focus Not Obscured (Minimum)** | AA | Focused element not fully hidden | Sticky footer covers focused field |
+| **2.5.7 Dragging Movements** | AA | Single-pointer alternative to drag | Drag-only reorder |
+| **3.2.6 Consistent Help** | A | Help in the same place on every page | Moving support link |
+| **3.3.7 Redundant Entry** | A | No re-entering the same data | Re-type address |
+| **3.3.8 Accessible Authentication (Minimum)** | AA | No memory/puzzle-only login, allow paste | Paste blocked on password |
 | **2.5.2 Pointer Cancellation** | A | Users can undo pointer actions | No undo for swipe action |
 | **4.1.2 Name, Role, Value** | A | Components have accessible name, role, value | Custom button without role attribute |
 | **4.1.3 Status Messages** | AA | Status messages announced without focus change | Error message not announced |
@@ -1227,7 +1255,9 @@ Automated tools catch about 30% of accessibility issues. Always do manual testin
 
 ## References & Further Learning
 
-- **WCAG 2.1 Official Specification**: w3.org/WAI/WCAG21/quickref/
+- **WCAG 2.2 Official Specification**: w3.org/TR/WCAG22/
+- **What's new in WCAG 2.2**: w3.org/WAI/standards-guidelines/wcag/new-in-22/
+- **WCAG 2.2 Quick Reference**: w3.org/WAI/WCAG22/quickref/
 - **WebAIM Articles**: webaim.org/ (excellent practical guides)
 - **W3C WAI (Web Accessibility Initiative)**: w3.org/WAI/
 - **Inclusive Components**: inclusivecomponents.design/ (pattern library)
@@ -1236,6 +1266,6 @@ Automated tools catch about 30% of accessibility issues. Always do manual testin
 
 ---
 
-**Last Updated**: 2026-03-28
-**WCAG Version**: 2.1 Level AA
+**Last Updated**: 2026-11-08
+**WCAG Version**: 2.2 Level AA
 **Target Audience**: UX/UI Designers implementing HTML/CSS
