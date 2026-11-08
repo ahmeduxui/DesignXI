@@ -1,8 +1,15 @@
-# AI Imagery — Gemini pipeline for DesignXI deliverables
+# Imagery — Gemini, free stock, or the user's own photos
 
 Every image inside a DesignXI deliverable — hero photos, in-screen content imagery, persona
-portraits, case-study mockup backdrops — is generated with **Gemini**, driven through Chrome, using
-the project's own brand tokens. No stock URLs, no gray placeholder boxes, no `via.placeholder.com`.
+portraits, case-study mockup backdrops — comes from one of three sources, chosen by the user:
+
+1. **Gemini**, driven through Chrome, from a prompt built out of the project's own brand tokens.
+2. **Free stock photos** from Pexels or Unsplash, picked to match the same subject and palette
+   (see "Free stock photos" below).
+3. **The user's own photos.**
+
+Whatever the source: no hotlinked stock URLs, no gray placeholder boxes, no `via.placeholder.com`.
+Every image is downloaded into `images/` under the manifest's file name.
 
 Two things matter equally here:
 
@@ -69,16 +76,26 @@ deliveries, every time, even when the automation succeeded.
 
 Do not silently open a browser. Ask with AskUserQuestion:
 
+Ask in the user's language (Arabic or English):
+
 > "الصور جاهزة كبرومبتات. كيف تحب نكمل؟
 > A) ولّدها أنت عبر جيمناي في كروم
 > B) أعطني البرومبتات بس وأنا أولّدها
-> C) عندي صور جاهزة بحطها بنفسي"
+> C) عندي صور جاهزة بحطها بنفسي
+> D) استخدم صور مجانية من Pexels أو Unsplash"
+
+> "The image prompts are ready. How would you like to continue?
+> A) Generate them for me with Gemini in Chrome
+> B) Just give me the prompts and I'll generate them
+> C) I have my own photos and will add them myself
+> D) Use free stock photos from Pexels or Unsplash"
 
 - **A** → run the Chrome flow (Step 3), image by image.
 - **B** → you're already done: the prompt sheet and placeholders exist. Say exactly where to drop
   the finished files (`images/<file>`, same names) and carry on with the design. Nothing blocks —
   the deliverable is coherent and complete with placeholders in place.
 - **C** → same as B, minus the prompts discussion. Keep the file names.
+- **D** → follow "Free stock photos" below.
 
 Ask this once per image batch, not once per image.
 
@@ -206,17 +223,15 @@ isn't connected, don't improvise a workaround — fall back to option B and keep
   they overwrite the placeholders and the HTML needs no edit). Only claim an image is in place after
   the shell actually sees it.
 
-- **Remove the Gemini sparkle** stamped into the bottom-right corner of every generated image —
-  it cannot ship in a client deliverable:
-  ```bash
-  python3 references/scripts/remove_logo.py --image images/hero-freelancer.jpg
-  ```
-  It patches the corner with pixels sampled from just above and feathers the seam, keeping a
-  `*-logo.jpg` backup. Run it on every image *before* `fit_image.py`, since cropping moves the
-  corner. Don't try to detect the sparkle first and skip images that look clean — detection is
-  unreliable (a white sparkle on a bright desk produces no bright outlier, and a legitimately
-  bright corner looks like one), and the mark is always in the same place, so patching
-  unconditionally is both simpler and more correct.
+- **Gemini's visible watermark — never strip it with code.** Gemini stamps a small sparkle in the
+  bottom-right corner of generated images. DesignXI does not remove it by editing pixels: that is the
+  provider's AI-content label, and removing it programmatically may conflict with Google's terms.
+  Instead, **before generating, ask the user to turn the mark off at the source**: Gemini → Settings →
+  *Media watermark* → Off. Google added this setting in August 2026; it may not appear in countries
+  that legally require visible AI labels. The invisible SynthID watermark always stays in the file,
+  which is expected and fine. If the setting isn't available, either ship the image with the mark
+  (and say so in the handoff), or switch that image to a stock photo (option D) or the user's own
+  photo. Don't crop an image just to cut the mark out.
 
 - **Fix the crop, don't regenerate.** If the ratio is off, crop to the manifest `size`:
   ```bash
@@ -227,6 +242,45 @@ isn't connected, don't improvise a workaround — fall back to option B and keep
 
 - **Regenerate on subject, not on ratio.** If the user dislikes an image, change the subject or mood
   line. One or two tries is enough; more than that means the subject description is too vague.
+
+---
+
+## Free stock photos (option D)
+
+Use this when the user prefers real photography, when Gemini isn't available, or for images that
+must not be AI-generated (for example, a real-looking person in a sensitive context).
+
+**Sources** — both allow free commercial use without attribution, under their own licenses:
+- **Pexels** — pexels.com · license: pexels.com/license
+- **Unsplash** — unsplash.com · license: unsplash.com/license
+
+Neither license allows selling unaltered copies of the photo, implying that people or brands shown
+endorse the product, or using a recognizable person in a sensitive or misleading way. Check the
+license page when in doubt; licenses can change.
+
+**How to pick on-brand photos:**
+1. Search with the manifest `subject` in plain words (drop the style and color lines — those are for
+   AI prompts), plus a mood word from the Phase 11 design school (e.g. "calm", "minimal", "warm").
+2. Use the site's color filter with the Phase 12 primary color where available, so the photo sits
+   inside the palette.
+3. Prefer photos with calm space where text or UI will sit — the same composition rule as the prompt
+   recipe.
+4. For persona portraits, choose all personas from similar lighting and background so the set looks
+   consistent.
+
+**Download, don't hotlink.** Save each photo into `images/` under the manifest file name, then run
+`fit_image.py` for the size. Record the source in `images.json` on that image:
+
+```json
+{ "id": "hero-home", "file": "images/hero-home.jpg", "source": "pexels",
+  "source_url": "https://www.pexels.com/photo/...", "credit": "Photo by <name> on Pexels" }
+```
+
+Attribution isn't required, but list every stock photo with its credit in the handoff and case study
+— it is good practice and it lets the client verify the license later.
+
+If the sandbox can't reach these sites, give the user a search phrase per image (in the prompt sheet,
+under the Gemini prompt) and let them download the files into `images/` with the same names.
 
 ---
 

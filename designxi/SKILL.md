@@ -1,6 +1,6 @@
 ---
 name: "designxi"
-description: "Full UX/UI design process from discovery to delivery, run as 27 ordered phases. Use for: new product design, redesign, wireframes, case study, personas, UI screens, BRD/FRD. Trigger: \"design X\", \"I want to build a product\", \"help me start a design project\", \"create case study\", \"build an app\", \"design a dashboard\", \"make a mobile app\", \"design a website\". Also covers all imagery inside the deliverables — hero photos, in-screen images, persona portraits and case-study mockups are generated with Gemini from the project's own style and color tokens, and every image ships with a copy-ready prompt so the user can regenerate it themselves. Always use this skill when the user wants to create any kind of digital product or interface.\n"
+description: "DesignXI: a full UX/UI design process from discovery to delivery, run as 27 ordered phases (research, personas, BRD/FRD, wireframes, design system, hi-fi screens, prototype, case study, developer handoff). Use ONLY when the user calls it by name (/designxi or 'use DesignXI'), or explicitly asks to run a complete end-to-end design process for a new product, a full redesign, or a portfolio case study. Do NOT use for small UI edits, single components, code changes, or projects that already follow their own design system, unless the user asks for DesignXI by name. Imagery inside the deliverables can come from Gemini (with a copy-ready prompt for every image), free stock photos (Pexels/Unsplash), or the user's own photos."
 ---
 
 # DesignXI — Full UX/UI Design System (27 Phases)
@@ -46,7 +46,7 @@ docs → deliver and launch. Two things this ordering fixes versus a naive flow:
 | | **Stage: UI** | | |
 | 14 | Design System & Components | buttons, fields, tables, cards, nav — all states | screens.html |
 | 15 | Hi-fi Screen Design | every screen in both languages with empty/loading/error states | screens.html |
-| 15A | AI Imagery (Gemini) | Gemini prompts, manifest, placeholders, embedding | images/ + صور-البرومبتات.md |
+| 15A | Imagery (Gemini · stock · own) | Gemini prompts or Pexels/Unsplash picks, manifest, placeholders, embedding | images/ + صور-البرومبتات.md |
 | 16 | Responsive & RTL | desktop/tablet/phone, direction mirroring, numbers, units | screens.html |
 | 17 | Self-Critique & Accessibility | 5-axis review, WCAG, fix critical | process.html |
 | | **Stage: Validation** | | |
@@ -151,6 +151,10 @@ Sixteen single-file deep dives. Read one only when its topic is the active conce
 
 ## Step 0: Project Setup (Always run first)
 
+**Language rule for every question in this skill:** ask in the user's language. Each question below is
+written in Arabic and English — use the version that matches how the user writes (Arabic → Arabic,
+anything else → English). For bilingual users, follow the language of their latest message.
+
 ### 0A — Project Complexity
 Ask using AskUserQuestion. The 27-phase order is fixed; complexity only controls which phases a smaller
 project skips:
@@ -159,6 +163,11 @@ project skips:
 > B) متوسط (Standard) — منتج جديد → Phases 1–20 + 24–25
 > C) كامل (Full Product) — منتج شامل بوثائق واعتماد → all 27 phases in order"
 
+> "How big is this project?
+> A) Quick — one screen or feature → Phases 1–3 (short) + 7–8 + 10–12 + 14–15 + 24
+> B) Standard — a new product → Phases 1–20 + 24–25
+> C) Full Product — a complete product with docs and sign-off → all 27 phases in order"
+
 **Quick project**: still runs in the 27-phase order, but skips the heavy docs — BRD/FRD (5–6),
 mid-fi wireframes (9) may fold into lo-fi, and the post-design docs (21–23) and staging/launch (26–27).
 Read only the references for the phases it actually runs.
@@ -166,6 +175,8 @@ Read only the references for the phases it actually runs.
 ### 0B — Bilingual Flag
 Ask immediately after:
 > "هل المشروع يدعم لغتين (عربي + إنجليزي)؟ A) نعم | B) لا"
+
+> "Will the product support two languages (Arabic + English)? A) Yes | B) No"
 
 If B: produce all outputs in one language only.
 
@@ -420,13 +431,14 @@ per saved system, plus a "fresh style" option. Do not infer the choice; let the 
 
 Build the options like this:
 - **One option per saved system in the catalog**, in catalog order, labeled with the system name and a
-  one-line "use for" so the fit is obvious — e.g. `Untitled UI — منتج/ساس نظيف`, `Salla — ثيم سلّة / متجر عربي`,
+  one-line "use for" in the user's language so the fit is obvious — e.g. `Untitled UI — منتج/ساس نظيف` /
+  `Untitled UI — clean SaaS product`, `Salla — ثيم سلّة / متجر عربي` / `Salla — Salla theme / Arabic store`,
   and so on for every system in the file (the list grows as systems are added —
   always read the file, never hardcode this list).
-- **"ستايل جديد من الصفر"** — build a fresh design school with the full style selection below.
+- **"ستايل جديد من الصفر"** / **"A fresh style from scratch"** — build a fresh design school with the full style selection below.
 - (AskUserQuestion also always offers "Other", so the user can name a system not in the catalog.)
 
-Lead with the system that best fits the product type (put it first, mark it *(موصى به)*) based on the
+Lead with the system that best fits the product type (put it first, mark it *(موصى به)* / *(Recommended)*) based on the
 product type from Phase 1 and the "use for" lines in the catalog — but the user decides.
 
 **On the result:**
@@ -489,7 +501,8 @@ Neumorphism ⚠️ *(accessibility risk — use with caution)* · Custom/Hybrid
 > non-interactive, decorative contexts with a verified accessible alternative for interactive states.
 
 ### The Differentiation Question (Mandatory)
-Ask the user: **"ما الشيء الوحيد الذي سيتذكره المستخدم من هذا التصميم؟"**
+Ask the user: **"ما الشيء الوحيد الذي سيتذكره المستخدم من هذا التصميم؟"** / **"What is the one thing
+users will remember about this design?"**
 Answer must be **specific** — push back if vague. Write it as a **Design Direction Statement**.
 
 > Read `references/brand-identity.md` for differentiation examples, implementation complexity guidance,
@@ -584,8 +597,11 @@ Define the system **before any screen**:
 - **Components**: buttons, fields, tables, cards, nav, charts — each with all states defined
   (default / hover / active / disabled / focus / error / loading).
 
-**All design decisions comply with WCAG 2.1 AA.** Key criteria: 1.4.3 (text contrast 4.5:1) · 1.4.11
-(non-text contrast 3:1) · 2.4.7 (focus indicator) · 1.4.4 (200% zoom).
+**All design decisions comply with WCAG 2.2 AA.** Key criteria: 1.4.3 (text contrast 4.5:1) · 1.4.11
+(non-text contrast 3:1) · 2.4.7 (focus indicator) · 1.4.4 (200% zoom) · and the criteria new in 2.2:
+2.4.11 (focus never hidden by sticky bars) · 2.5.7 (no drag-only actions) · 2.5.8 (targets ≥ 24×24, DesignXI
+uses 44/48) · 3.2.6 (help in the same place) · 3.3.7 (no re-entering data) · 3.3.8 (no puzzle-only login,
+allow paste). See `references/accessibility-wcag.md` → "New in WCAG 2.2".
 
 **Polish each component** per `references/motion-and-polish.md` §3 — optical (not mathematical) centering,
 concentric nested radii, border-vs-shadow jobs, and every interactive component's full designed state set.
@@ -615,14 +631,16 @@ reaction?"
 
 ---
 
-## Phase 15A — AI Imagery (Gemini)
+## Phase 15A — Imagery (Gemini, free stock, or own photos)
 
 > Read `references/ai-imagery.md` before producing any deliverable that contains an image.
 
-Every image in a DesignXI deliverable is generated with **Gemini** from a prompt built out of this
-project's own Phase 11 design school and Phase 12 color tokens — hero photos, in-screen content imagery,
-persona portraits, case-study mockups. Stock URLs and gray placeholder boxes are not an option; a
-generic image undoes the design system it sits inside.
+Every image in a DesignXI deliverable — hero photos, in-screen content imagery, persona portraits,
+case-study mockups — is chosen to match this project's Phase 11 design school and Phase 12 color tokens.
+The user picks the source: **Gemini** (generated from a prompt built out of those tokens), **free stock
+photos** from Pexels or Unsplash (picked by subject and palette, downloaded, credited), or **their own
+photos**. Hotlinked URLs and gray placeholder boxes are not an option; a generic image undoes the design
+system it sits inside.
 
 This runs attached to Phase 15 because the imagery is built around the finished screens. It also feeds
 back to persona portraits (Phase 3 output) and forward to case-study mockups (Phase 24).
@@ -645,9 +663,11 @@ Gemini themselves, drops the files into `images/` under the same names, and the 
    overwrites the file with no HTML edit. Then print the same table plus each prompt in a code block in
    chat. Both deliveries, always.
 3. **Ask how to proceed** via AskUserQuestion — generate via Gemini in Chrome / hand over the prompts
-   only / the user has their own photos. Ask once per batch, never open a browser unasked.
-4. **Generate** (only if he picked Chrome), removing the sparkle with `remove_logo.py` and fixing ratios
-   with `fit_image.py` rather than regenerating.
+   only / the user has their own photos / free stock photos from Pexels or Unsplash. Ask once per batch,
+   never open a browser unasked.
+4. **Generate or collect** — for Gemini, first ask the user to switch off *Media watermark* in Gemini's
+   settings (never strip the mark with code); for stock, download and record the credit in `images.json`.
+   Fix ratios with `fit_image.py` rather than regenerating.
 5. **Embed** with `embed_images.py` on the delivery copy if the file goes into Figma.
 
 The deliverable is considered complete either way — with real images, or with labeled placeholders plus
@@ -683,7 +703,7 @@ symptom → fix, and flag which items need a physical phone to confirm. RTL mirr
 > Read `references/phase-5-ui.md` for the full 5-axis critique table, and `references/accessibility-wcag.md`.
 
 Run the **5-axis Design Self-Critique** on every key screen: Usability · Visual Hierarchy · Consistency ·
-Accessibility · First Impression. Then the accessibility pass against WCAG 2.1 AA, and a **worst-case
+Accessibility · First Impression. Then the accessibility pass against WCAG 2.2 AA, and a **worst-case
 pass** per `references/stress-test.md` — report each break as what-you-see → cause → fix. **Fix all 🔴
 Critical findings before Phase 18.** This is the gate between "designed" and "validated."
 
@@ -827,6 +847,11 @@ answer, so ask before producing anything:
 > 2. ملفات منفصلة (دراسة حالة / شاشات / بيرسوناز / هاندأوف …)
 > 3. أصول للتطوير (كود حسب الستاك)"
 
+> "Which output format do you want?
+> 1. A complete platform in one HTML file that opens in the browser
+> 2. Separate files (case study / screens / personas / handoff …)
+> 3. Developer assets (code for your stack)"
+
 Route by the answer:
 
 ### Format 1 — Self-contained HTML (any surface)
@@ -838,6 +863,10 @@ matches what the user asked for*, it is not always the whole platform.
 > "ماذا أصمّم لك كملف HTML؟
 > 1. صفحة هبوط · 2. داشبورد · 3. شاشات موبايل · 4. منصة كاملة · 5. شاشة محدّدة أخرى
 > وهل تريده ريسبونسيف (موبايل + ديسكتوب) أم بعرض واحد؟ (ولو لم يُحسم سابقاً: لايت/دارك)"
+
+> "What should I build as the HTML file?
+> 1. Landing page · 2. Dashboard · 3. Mobile screens · 4. Full platform · 5. A specific screen
+> Should it be responsive (mobile + desktop) or one width? (And if not decided yet: light / dark)"
 
 Then build exactly that surface: a landing page → the full landing page; a dashboard → the dashboard; mobile
 → the phone screens; full platform → every screen with a `showScreen` router. Everything inline
@@ -855,6 +884,10 @@ before delivering, then offer to persist it as an artifact with a stable URL (as
 > 1. casestudy.html | 2. screens.html | 3. personas.html
 > 4. process.html | 5. handoff.html | 6. brd.html | 7. frd.html | 8. كل الملفات"
 
+> "Which file do you need now?
+> 1. casestudy.html | 2. screens.html | 3. personas.html
+> 4. process.html | 5. handoff.html | 6. brd.html | 7. frd.html | 8. All files"
+
 ### Format 3 — Dev assets (code)
 Ask the Tech Stack (same list as Format 2). Deliver the component/code files in that stack for the developer
 to integrate — this goes to the workspace folder as code, not an in-browser demo. Name any needed library
@@ -871,7 +904,7 @@ per the Library-choice note below, and carry the handoff specs from Phase 25.
 - Quality check → `references/templates/quality-checklist.md`
 
 **Images**: if the requested file contains any imagery (screen heroes, persona portraits, case-study
-mockups), run Phase 15A for it before delivering — the file ships either with real Gemini images or with
+mockups), run Phase 15A for it before delivering — the file ships either with real images (Gemini, stock or the user's own) or with
 labeled placeholders plus `صور-البرومبتات.md` beside it. Never with empty boxes and no prompts.
 
 **Screen mockups** (case study + delivery): don't present bare screenshots. Read `references/mockups.md`
@@ -886,7 +919,7 @@ charts, list virtualization, complex state, dates), name the library in the hand
 don't leave it to the first npm result. See `references/motion-and-polish.md` → Library choice (the
 standalone **pick-ui-library** skill carries the current picks by category).
 
-After producing a file, ask: "هل تحتاج ملفاً آخر؟"
+After producing a file, ask: "هل تحتاج ملفاً آخر؟" / "Do you need another file?"
 
 ---
 
@@ -978,7 +1011,7 @@ Before handing off, verify:
 - [ ] 10-block motion review passed (motion-and-polish.md §Phase 17) — no unjustified, high-frequency, `ease-in`, over-300ms, or layout-property animations left
 - [ ] Every interaction spec names the motion by its exact term (handoff), not a vague description
 
-**Accessibility (WCAG 2.1 AA)**
+**Accessibility (WCAG 2.2 AA)**
 - [ ] All text passes 4.5:1 contrast ratio
 - [ ] Non-text contrast ≥ 3:1 (icons, borders, focus rings)
 - [ ] Focus indicator visible on every focusable element
@@ -986,6 +1019,11 @@ Before handing off, verify:
 - [ ] Keyboard-only navigation tested
 - [ ] Touch targets minimum 48×48px
 - [ ] Links distinguishable by more than color alone (underline, icon, or shape)
+- [ ] Focused elements never fully hidden by sticky headers, footers or banners (2.4.11)
+- [ ] Every drag action has a tap/click alternative (2.5.7)
+- [ ] Help/contact sits in the same place on every page (3.2.6)
+- [ ] No flow asks for the same data twice (3.3.7)
+- [ ] Login allows paste and password managers, no puzzle-only step (3.3.8)
 
 **Responsive**
 - [ ] Tested at all 4 breakpoints: 375px · 768px · 1024px · 1440px
@@ -999,11 +1037,11 @@ Before handing off, verify:
 - [ ] Copy humanized (humanize-copy.md): no AI tells in AR or EN — no "Elevate/Seamless/Unlock", no forced triads; no "تم إجراء"/المصدر المتراكم/التضخيم
 - [ ] Worst-case pass done (stress-test.md): long Arabic names, unbreakable emails, "1 member", missing avatar, 1,000 rows, every-status-at-once — no overflow, clipping, or wrong plural
 - [ ] Numbers use tabular figures + locale formatting; no raw `NaN`/`undefined`, no "1 members"
-- [ ] Every image is Gemini-generated from the project's own style + color tokens — no stock URLs, no gray boxes
+- [ ] Every image matches the project's own style + color tokens (Gemini, downloaded stock, or the user's photos) — no hotlinked URLs, no gray boxes
 - [ ] `images.json` and `صور-البرومبتات.md` exist, and every image in the HTML has a prompt in the sheet
 - [ ] Every `<img>` has real `alt` text describing the content
 - [ ] Persona portraits present — no default avatar circles
-- [ ] Gemini sparkle removed from every generated image
+- [ ] Gemini images generated with *Media watermark* off where available — the mark is never removed with code; stock photos credited in `images.json` and the handoff
 - [ ] Any remaining placeholder labeled "(AI placeholder — generate from صور-البرومبتات.md before launch)"
 - [ ] Figma-bound copies run through `embed_images.py` — images inlined, not linked
 
@@ -1033,10 +1071,10 @@ Before handing off, verify:
 - No mixed icon libraries
 - No reading any Figma file without telling the user first and getting a clear yes — name the file and scope, then pull only that (`references/figma-tokens.md`)
 - No gray placeholder boxes in deliverables
-- No stock-photo URLs or `via.placeholder.com` — images come from Gemini via Phase 15A
+- No hotlinked image URLs or `via.placeholder.com` — images come from Phase 15A (Gemini, downloaded stock, or own photos)
 - No image without its prompt handed to the user (file + chat), even when the automation succeeded
 - No opening a browser to generate images without asking first
-- No Gemini sparkle left in a shipped image
+- Never remove an AI provider's watermark with code — turn it off at the source or use another image source
 - No font/typescale chosen without asking the user first
 - No design school skipped
 - No static screens — `screens.html` must be an interactive prototype
@@ -1059,4 +1097,4 @@ Before handing off, verify:
 - Label assumptions clearly: "(Assumption: based on typical behavior)"
 - Confirm key decisions before building on them
 - Use simple language; avoid jargon unless the user is technical
-- Bilingual: only apply if the user selected "نعم" in Step 0B
+- Bilingual: only apply if the user selected "نعم" / "Yes" in Step 0B

@@ -3640,7 +3640,7 @@ function setLang(lang, btn) {
         <tr><td>Desktop</td><td>1024px+</td><td>12 col</td><td>Full layout, max-width: 1440px</td></tr>
       </tbody>
     </table>
-    <p class="frd-body" style="margin-top:var(--space-4);">All interactive elements: minimum <strong>44×44px</strong> touch target (WCAG 2.5.5). RTL layout tested at all breakpoints.</p>
+    <p class="frd-body" style="margin-top:var(--space-4);">All interactive elements: minimum <strong>44×44px</strong> touch target (WCAG 2.5.5 AAA; the 2.2 AA floor is 24×24 per 2.5.8). RTL layout tested at all breakpoints.</p>
   </div>
 
   <!-- ─── 12. PERMISSIONS & SECURITY ─── -->
@@ -3670,7 +3670,7 @@ function setLang(lang, btn) {
         <tr><td>Engagement</td><td>DAU (Daily Active Users)</td><td>—</td><td>[X,000]</td><td>Analytics</td></tr>
         <tr><td>Retention</td><td>7-day retention</td><td>—</td><td>&gt; 40%</td><td>Cohort analysis</td></tr>
         <tr><td>Performance</td><td>Load time (p95)</td><td>—</td><td>&lt; 2s</td><td>Lighthouse</td></tr>
-        <tr><td>Accessibility</td><td>WCAG 2.1 AA</td><td>—</td><td>100%</td><td>Audit</td></tr>
+        <tr><td>Accessibility</td><td>WCAG 2.2 AA</td><td>—</td><td>100%</td><td>Audit</td></tr>
       </tbody>
     </table>
   </div>
@@ -3687,7 +3687,7 @@ function setLang(lang, btn) {
         <tr><td><strong>UAT-02</strong></td><td>SCR-02</td><td>FR-AUTH-02</td><td>Invalid email format</td><td>Inline error shown immediately</td><td><span class="uat-checkbox"></span></td></tr>
         <tr><td><strong>UAT-03</strong></td><td>SCR-02</td><td>FR-AUTH-04</td><td>5 failed logins → lockout</td><td>Account locked, message shown</td><td><span class="uat-checkbox"></span></td></tr>
         <tr><td><strong>UAT-04</strong></td><td>SCR-05</td><td>FR-SEARCH-01</td><td>Arabic search &lt; 1.5s</td><td>Results within 1.5 seconds</td><td><span class="uat-checkbox"></span></td></tr>
-        <tr><td><strong>UAT-05</strong></td><td>All</td><td>WCAG 2.1</td><td>Screen reader traversal</td><td>All elements announced correctly</td><td><span class="uat-checkbox"></span></td></tr>
+        <tr><td><strong>UAT-05</strong></td><td>All</td><td>WCAG 2.2</td><td>Screen reader traversal</td><td>All elements announced correctly</td><td><span class="uat-checkbox"></span></td></tr>
         <!-- Add all UAT cases -->
       </tbody>
     </table>
